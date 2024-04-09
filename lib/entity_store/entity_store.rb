@@ -5,7 +5,7 @@ module EntityStore
     cls.class_exec do
       include Configure
       include Dependency
-      include Virtual
+      include TemplateMethod
 
       include Log::Dependency
       include Messaging::Category
@@ -29,12 +29,12 @@ module EntityStore
       attr_accessor :specifier
       attr_accessor :snapshot_interval
 
-      virtual :reader_class
-      virtual :projection_class
-      virtual :reader_batch_size
-      virtual :snapshot_class
+      template_method :reader_class
+      template_method :projection_class
+      template_method :reader_batch_size
+      template_method :snapshot_class
 
-      virtual :configure
+      template_method :configure
 
       extend Build
       extend EntityMacro
